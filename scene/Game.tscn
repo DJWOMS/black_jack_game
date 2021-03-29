@@ -6,20 +6,39 @@
 script = ExtResource( 1 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 451.0
-margin_top = 555.0
-margin_right = 557.0
-margin_bottom = 575.0
+margin_left = 416.0
+margin_top = 536.0
+margin_right = 522.0
+margin_bottom = 574.0
 text = "Get a card"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Pass" type="Button" parent="."]
+margin_left = 544.195
+margin_top = 533.941
+margin_right = 649.195
+margin_bottom = 573.941
+text = "Pass"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PlayerName" type="Label" parent="."]
-margin_left = 41.3191
-margin_top = 9.53517
-margin_right = 204.319
-margin_bottom = 52.5352
+margin_left = 2.11895
+margin_top = 426.964
+margin_right = 165.119
+margin_bottom = 469.964
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Result" type="Label" parent="."]
+margin_left = 348.0
+margin_top = 163.0
+margin_right = 698.0
+margin_bottom = 266.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

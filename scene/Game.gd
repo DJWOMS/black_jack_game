@@ -8,6 +8,9 @@ var card = preload('res://scene/Card.tscn')
 var rank := ["A", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K"]
 var suit := ["cardClubs", "cardDiamonds", "cardHearts", "cardSpades"]
 var cards := []
+var current_card := 1
+var current_card_x := 50.0
+var current_card_y := 300.0
 
 
 func _ready():
@@ -26,18 +29,23 @@ func _ready():
 				_card.value = int(r)
 			elif r == "A":
 				_card.value = 1
-			#elif r == "T":
-				#_card.value = 11
 			elif r in "JQK":
 				_card.value = 10
 			_card.position.x = x
 			_card.position.y = y
 			y += 2.0
 			call_deferred("add_child", _card)
-	
 
 
+func check_count():
+	if Global.count > 21:
+		$Result.text = "Game over"
 
 func _on_Button_pressed():
-	var last_child = get_tree().get_child(get_child_count()-1)
-	print(last_child.value)
+	var last_child = get_node(".").get_child(get_child_count()-current_card)
+	current_card += 1
+	current_card_x += 100.0
+	last_child.set_position(Vector2(current_card_x, current_card_y))
+	last_child.facedown = false
+	Global.count += last_child.value
+	check_count()
