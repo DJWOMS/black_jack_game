@@ -27,12 +27,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Black_Jack"
-run/main_scene="res://scene/Enter.tscn"
+run/main_scene="res://scene/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://scene/Global.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 
 [rendering]
 

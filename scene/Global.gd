@@ -1,6 +1,6 @@
 extends Node
 
-var player_name
+var player_name := "Player"
 var count := 0
 
 var brocker_count := 0
