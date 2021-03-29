@@ -34,12 +34,58 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Result" type="Label" parent="."]
-margin_left = 348.0
-margin_top = 163.0
-margin_right = 698.0
-margin_bottom = 266.0
+[node name="PlayerCount" type="Label" parent="."]
+margin_left = 0.821632
+margin_top = 475.023
+margin_right = 109.822
+margin_bottom = 512.023
+text = "Count"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BrockerCount" type="Label" parent="."]
+margin_left = 433.265
+margin_top = 2.0
+margin_right = 619.265
+margin_bottom = 51.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+margin_left = 349.573
+margin_top = 167.416
+margin_right = 705.573
+margin_bottom = 349.416
+window_title = "Geme over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="Button" parent="WindowDialog"]
+margin_left = 29.3727
+margin_top = 133.119
+margin_right = 173.373
+margin_bottom = 166.119
+text = "New game"
+
+[node name="Exit" type="Button" parent="WindowDialog"]
+margin_left = 190.411
+margin_top = 134.178
+margin_right = 334.411
+margin_bottom = 167.178
+text = "Exit"
+
+[node name="Result" type="Label" parent="WindowDialog"]
+margin_left = 3.72437
+margin_top = 10.4162
+margin_right = 353.724
+margin_bottom = 113.416
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Pass" to="." method="_on_Pass_pressed"]
+[connection signal="pressed" from="WindowDialog/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="WindowDialog/Exit" to="." method="_on_Exit_pressed"]

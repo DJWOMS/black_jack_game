@@ -34,13 +34,29 @@ func _ready():
 			_card.position.x = x
 			_card.position.y = y
 			y += 2.0
+			_card.add_to_group("cards")
 			call_deferred("add_child", _card)
+	#get_groups()
+
+
+func btn():
+	$Button.disabled = true
+	$Pass.disabled = true
 
 
 func check_count():
 	if Global.count > 21:
-		$Result.text = "Game over"
-
+		btn()
+		$WindowDialog.visible = true
+		var result = $WindowDialog.get_child(3)
+		result.text = "Game over"
+	if Global.count == 21:
+		btn()
+		$WindowDialog.visible = true
+		var result = $WindowDialog.get_child(3)
+		result.text = "You win!!!"
+		
+		
 func _on_Button_pressed():
 	var last_child = get_node(".").get_child(get_child_count()-current_card)
 	current_card += 1
@@ -48,4 +64,29 @@ func _on_Button_pressed():
 	last_child.set_position(Vector2(current_card_x, current_card_y))
 	last_child.facedown = false
 	Global.count += last_child.value
+	$PlayerCount.text = "Count: %s" % Global.count
 	check_count()
+
+
+func _on_NewGame_pressed():
+	Global.reset()
+	get_tree().change_scene("res://scene/Game.tscn")
+
+
+func _on_Exit_pressed():
+	get_tree().quit()
+
+
+func _on_Pass_pressed():
+	current_card_x = 100.0
+	while Global.brocker_count < 21:
+		var last_child = get_node(".").get_child(get_child_count()-current_card)
+		current_card += 1
+		current_card_x += 100.0
+		last_child.set_position(Vector2(current_card_x, 50))
+		last_child.facedown = false
+		if last_child.value + Global.brocker_count <= 21:
+			Global.brocker_count += last_child.value
+			$BrockerCount.text = "Count: %s" % Global.count
+		else:
+			break
