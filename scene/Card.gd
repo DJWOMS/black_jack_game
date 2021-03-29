@@ -15,6 +15,7 @@ func get_rank() -> String:
 
 func _ready():
 	$Texture.texture_normal = load('res://sprite/%s%s.png' % [suit, rank])
+	#add_to_group("cards")
 	
 
 func _process(delta):
