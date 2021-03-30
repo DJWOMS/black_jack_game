@@ -3,7 +3,6 @@ class_name Game
 
 onready var Global = get_node("/root/Global")
 var card = preload('res://scene/Card.tscn')
-#var card: Card
 
 var rank := ["A", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K"]
 var suit := ["cardClubs", "cardDiamonds", "cardHearts", "cardSpades"]
@@ -47,39 +46,46 @@ func btn():
 	$Pass.disabled = true
 
 
-func check_count():
-	var result = $WindowDialog.get_child(3)
+func print_result() -> String:
+	var result_text = "\n%s: %s\nBrocker: %s" % [
+		Global.player_name, Global.count, Global.brocker_count
+	]
+	return result_text
+
+func check_count() -> void:
+	var result = $WindowDialog.get_child(2)
+
 	if Global.count > 21:
 		btn()
 		$WindowDialog.visible = true
-		result.text = "You lose"
+		result.text = "You lose" + print_result()
 
 
-func check_count_pass():
-	var result = $WindowDialog.get_child(3)
+func check_count_pass() -> void:
+	var result = $WindowDialog.get_child(2)
 	check_count()
 	if Global.count == 21:
 		btn()
 		$WindowDialog.visible = true
-		result.text = "You win!!!"
+		result.text = "You win !!!" + print_result()
 	elif Global.brocker_count > 21:
 		btn()
 		$WindowDialog.visible = true
-		result.text = "You win!!!"
+		result.text = "You win !!!"  + print_result()
 	elif Global.brocker_count == Global.count:
 		btn()
 		$WindowDialog.visible = true
-		result.text = "You win!!!"
+		result.text = "Game ended in a draw"  + print_result()
 	elif Global.brocker_count < Global.count:
 		btn()
 		$WindowDialog.visible = true
-		result.text = "You win!!!"
+		result.text = "You win !!!"  + print_result()
 	elif Global.brocker_count > Global.count:
 		btn()
 		$WindowDialog.visible = true
-		result.text = "You lose"
+		result.text = "You lose"  + print_result()
 
-func add_card_player_start():
+func add_card_player_start() -> void:
 	var last_child = get_node(".").get_child(get_child_count()-current_card)
 	current_card += 1
 	current_card_x += 100.0
@@ -88,7 +94,7 @@ func add_card_player_start():
 	Global.count += last_child.value
 	$PlayerCount.text = "Count: %s" % Global.count
 
-func add_card_player():
+func add_card_player() -> void:
 	add_card_player_start()
 	check_count()
 

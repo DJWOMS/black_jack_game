@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
+[ext_resource path="res://sprite/table.jpg" type="Texture" id=2]
 
 [node name="Game" type="Node2D" groups=[
 "cards",
@@ -18,53 +19,53 @@ __meta__ = {
 }
 
 [node name="NewGame" type="Button" parent="WindowDialog"]
-margin_left = 29.3727
+margin_left = 112.435
 margin_top = 133.119
-margin_right = 173.373
+margin_right = 256.435
 margin_bottom = 166.119
 text = "New game"
-
-[node name="Exit" type="Button" parent="WindowDialog"]
-margin_left = 190.411
-margin_top = 134.178
-margin_right = 334.411
-margin_bottom = 167.178
-text = "Exit"
-
-[node name="Result" type="Label" parent="WindowDialog"]
-margin_left = 3.72437
-margin_top = 10.4162
-margin_right = 353.724
-margin_bottom = 113.416
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Result" type="Label" parent="WindowDialog"]
+margin_left = 113.0
+margin_top = 18.795
+margin_right = 258.0
+margin_bottom = 86.795
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Table" type="Sprite" parent="."]
+position = Vector2( 510.72, 382.759 )
+texture = ExtResource( 2 )
+
 [node name="Button" type="Button" parent="."]
-margin_left = 416.0
-margin_top = 536.0
-margin_right = 522.0
-margin_bottom = 574.0
+margin_left = 399.163
+margin_top = 533.755
+margin_right = 505.163
+margin_bottom = 571.755
 text = "Get a card"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Pass" type="Button" parent="."]
-margin_left = 544.195
-margin_top = 533.941
-margin_right = 649.195
-margin_bottom = 573.941
+margin_left = 527.358
+margin_top = 531.696
+margin_right = 632.358
+margin_bottom = 571.696
 text = "Pass"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Start" type="Button" parent="."]
-margin_left = 414.878
-margin_top = 469.102
-margin_right = 653.878
-margin_bottom = 516.102
+margin_left = 398.041
+margin_top = 466.857
+margin_right = 637.041
+margin_bottom = 513.857
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -98,7 +99,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="WindowDialog/NewGame" to="." method="_on_NewGame_pressed"]
-[connection signal="pressed" from="WindowDialog/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Pass" to="." method="_on_Pass_pressed"]
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
