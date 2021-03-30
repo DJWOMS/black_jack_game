@@ -15,7 +15,7 @@ var cards_broker := []
 
 
 func _ready():
-	$PlayerName.text = "Player: " + Global.player_name
+	$PlayerName.text = "Player " # + Global.player_name
 	var x := 1.0
 	var y := 1.0
 	randomize()

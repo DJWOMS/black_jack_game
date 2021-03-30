@@ -21,5 +21,3 @@ func _process(delta):
 		$Texture.disabled = true
 	else:
 		$Texture.disabled = false
-	var vel = Vector2()
-	self.translate(position * delta)

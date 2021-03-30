@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://sprite/table.jpg" type="Texture" id=2]
@@ -6,6 +6,23 @@
 [ext_resource path="res://sounds/you_lose.wav" type="AudioStream" id=4]
 [ext_resource path="res://sounds/win.wav" type="AudioStream" id=5]
 [ext_resource path="res://sounds/draw.wav" type="AudioStream" id=6]
+[ext_resource path="res://fonts/NewTegomin-Regular.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+font_data = ExtResource( 7 )
 
 [node name="Game" type="Node2D" groups=[
 "cards",
@@ -33,10 +50,11 @@ __meta__ = {
 }
 
 [node name="Result" type="Label" parent="WindowDialog"]
-margin_left = 113.0
-margin_top = 18.795
-margin_right = 258.0
-margin_bottom = 86.795
+margin_left = 110.48
+margin_top = 25.0947
+margin_right = 255.48
+margin_bottom = 93.0947
+custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -77,18 +95,20 @@ __meta__ = {
 
 [node name="PlayerName" type="Label" parent="."]
 margin_left = 2.11895
-margin_top = 426.964
+margin_top = 430.744
 margin_right = 165.119
-margin_bottom = 469.964
+margin_bottom = 473.744
+custom_fonts/font = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerCount" type="Label" parent="."]
-margin_left = 0.821632
-margin_top = 475.023
-margin_right = 109.822
-margin_bottom = 512.023
+margin_left = 1.0
+margin_top = 475.0
+margin_right = 135.0
+margin_bottom = 523.0
+custom_fonts/font = SubResource( 2 )
 text = "Count"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -99,6 +119,7 @@ margin_left = 433.265
 margin_top = 2.0
 margin_right = 619.265
 margin_bottom = 51.0
+custom_fonts/font = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
