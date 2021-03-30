@@ -53,43 +53,54 @@ func print_result() -> String:
 	return result_text
 
 func check_count() -> void:
-	var result = $WindowDialog.get_child(2)
-
 	if Global.count > 21:
-		btn()
-		$WindowDialog.visible = true
-		result.text = "You lose" + print_result()
+		lose()
+
+
+func win() -> void:
+	var result = $WindowDialog.get_child(2)
+	btn()
+	$WindowDialog.visible = true
+	result.text = "You win !!!" + print_result()
+	$SoundWin.play()
+
+
+func lose() -> void:
+	var result = $WindowDialog.get_child(2)
+	btn()
+	$WindowDialog.visible = true
+	result.text = "You lose" + print_result()
+	$SoundLose.play()
+
+
+func draw() -> void:
+	var result = $WindowDialog.get_child(2)
+	btn()
+	$WindowDialog.visible = true
+	result.text = "The game ended in a draw"  + print_result()
+	$SoundDraw.play()
 
 
 func check_count_pass() -> void:
-	var result = $WindowDialog.get_child(2)
 	check_count()
 	if Global.count == 21:
-		btn()
-		$WindowDialog.visible = true
-		result.text = "You win !!!" + print_result()
+		win()
 	elif Global.brocker_count > 21:
-		btn()
-		$WindowDialog.visible = true
-		result.text = "You win !!!"  + print_result()
+		win()
 	elif Global.brocker_count == Global.count:
-		btn()
-		$WindowDialog.visible = true
-		result.text = "Game ended in a draw"  + print_result()
+		draw()
 	elif Global.brocker_count < Global.count:
-		btn()
-		$WindowDialog.visible = true
-		result.text = "You win !!!"  + print_result()
+		win()
 	elif Global.brocker_count > Global.count:
-		btn()
-		$WindowDialog.visible = true
-		result.text = "You lose"  + print_result()
+		lose()
+
 
 func add_card_player_start() -> void:
 	var last_child = get_node(".").get_child(get_child_count()-current_card)
 	current_card += 1
 	current_card_x += 100.0
 	last_child.set_position(Vector2(current_card_x, current_card_y))
+	$SoundCard.play()
 	last_child.facedown = false
 	Global.count += last_child.value
 	$PlayerCount.text = "Count: %s" % Global.count
@@ -107,20 +118,20 @@ func add_card_brocker():
 	Global.brocker_count += last_child.value
 
 	
-func _on_Button_pressed():
+func _on_Button_pressed() -> void:
 	add_card_player()
 
 
-func _on_NewGame_pressed():
+func _on_NewGame_pressed() -> void:
 	Global.reset()
 	get_tree().change_scene("res://scene/Game.tscn")
 
 
-func _on_Exit_pressed():
+func _on_Exit_pressed() -> void:
 	get_tree().quit()
 
 
-func _on_Pass_pressed():
+func _on_Pass_pressed() -> void:
 	cards_broker[0].facedown = false
 	cards_broker[1].facedown = false
 	while Global.brocker_count < 21:
@@ -130,6 +141,7 @@ func _on_Pass_pressed():
 			current_card += 1
 			current_card_broker_x += 100.0
 			last_child.set_position(Vector2(current_card_broker_x, 50))
+			$SoundCard.play()
 			last_child.facedown = false
 			Global.brocker_count += last_child.value
 			$BrockerCount.text = "Count: %s" % Global.brocker_count
@@ -138,11 +150,15 @@ func _on_Pass_pressed():
 	check_count_pass()
 
 
-func _on_Start_pressed():
+func _on_Start_pressed() -> void:
 	add_card_player_start()
+	$SoundCard.play()
 	add_card_player_start()
+	$SoundCard.play()
 	add_card_brocker()
+	$SoundCard.play()
 	add_card_brocker()
+	$SoundCard.play()
 	$Button.visible = true
 	$Pass.visible = true
 	$Start.visible = false

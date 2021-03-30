@@ -6,7 +6,6 @@ var suit: String
 var value: int
 var facedown = true
 
-
 func get_value() -> int:
 	return value
 
@@ -15,7 +14,6 @@ func get_rank() -> String:
 
 func _ready():
 	$Texture.texture_normal = load('res://sprite/%s%s.png' % [suit, rank])
-	#add_to_group("cards")
 	
 
 func _process(delta):
@@ -23,3 +21,5 @@ func _process(delta):
 		$Texture.disabled = true
 	else:
 		$Texture.disabled = false
+	var vel = Vector2()
+	self.translate(position * delta)
