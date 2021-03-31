@@ -39,9 +39,9 @@ func _ready():
 			call_deferred("add_child", _card)
 	$Button.visible = false
 	$Pass.visible = false
+
 	var btn = $WindowDialog.get_close_button()
 	btn.visible = false
-
 
 func btn():
 	$Button.disabled = true
@@ -102,8 +102,8 @@ func add_card_player_start() -> void:
 	current_card += 1
 	current_card_x += 100.0
 	last_child.set_position(Vector2(current_card_x, current_card_y))
-	$SoundCard.play()
 	last_child.facedown = false
+	$SoundCard.play()
 	Global.count += last_child.value
 	$PlayerCount.text = "Count: %s" % Global.count
 
@@ -111,13 +111,18 @@ func add_card_player() -> void:
 	add_card_player_start()
 	check_count()
 
-func add_card_brocker():
+func add_card_brocker(_facedown=false) -> void:
 	var last_child = get_node(".").get_child(get_child_count()-current_card)
 	cards_broker.append(last_child)
 	current_card += 1
 	current_card_broker_x += 100.0
 	last_child.set_position(Vector2(current_card_broker_x, 50.0))
+	last_child.facedown = false
+	$SoundCard.play()
 	Global.brocker_count += last_child.value
+	if _facedown == true:
+		$BrockerCount.text = "Count: %s" % Global.brocker_count
+	
 
 	
 func _on_Button_pressed() -> void:
@@ -140,13 +145,7 @@ func _on_Pass_pressed() -> void:
 		yield(get_tree().create_timer(1.0), "timeout")
 		var last_child = get_node(".").get_child(get_child_count()-current_card)
 		if last_child.value + Global.brocker_count <= 21:
-			current_card += 1
-			current_card_broker_x += 100.0
-			last_child.set_position(Vector2(current_card_broker_x, 50))
-			$SoundCard.play()
-			last_child.facedown = false
-			Global.brocker_count += last_child.value
-			$BrockerCount.text = "Count: %s" % Global.brocker_count
+			add_card_brocker(true)
 		else:
 			break
 	check_count_pass()
@@ -154,13 +153,9 @@ func _on_Pass_pressed() -> void:
 
 func _on_Start_pressed() -> void:
 	add_card_player_start()
-	$SoundCard.play()
 	add_card_player_start()
-	$SoundCard.play()
 	add_card_brocker()
-	$SoundCard.play()
 	add_card_brocker()
-	$SoundCard.play()
 	$Button.visible = true
 	$Pass.visible = true
 	$Start.visible = false
