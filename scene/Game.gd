@@ -39,6 +39,8 @@ func _ready():
 			call_deferred("add_child", _card)
 	$Button.visible = false
 	$Pass.visible = false
+	var btn = $WindowDialog.get_close_button()
+	btn.visible = false
 
 
 func btn():

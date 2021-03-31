@@ -8,15 +8,15 @@
 [ext_resource path="res://sounds/draw.wav" type="AudioStream" id=6]
 [ext_resource path="res://fonts/NewTegomin-Regular.ttf" type="DynamicFontData" id=7]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 18
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 25
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 25
 font_data = ExtResource( 7 )
 
@@ -54,7 +54,7 @@ margin_left = 110.48
 margin_top = 25.0947
 margin_right = 255.48
 margin_bottom = 93.0947
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -98,7 +98,7 @@ margin_left = 2.11895
 margin_top = 430.744
 margin_right = 165.119
 margin_bottom = 473.744
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -108,7 +108,7 @@ margin_left = 1.0
 margin_top = 475.0
 margin_right = 135.0
 margin_bottom = 523.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Count"
 __meta__ = {
 "_edit_use_anchors_": false
